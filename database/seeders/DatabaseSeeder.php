@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Faker::create();
         $gender = $faker->randomElement(['male', 'female']);
-    	// Seed the courses table
+        // Seed the courses table
         foreach (range(1, 10) as $index) {
             DB::table('courses')->insert([
                 'id' => $index,
@@ -35,6 +36,16 @@ class DatabaseSeeder extends Seeder
                 'phone' => $faker->phoneNumber,
                 'dob' => $faker->date($format = 'Y-m-d', $max = 'now'),
                 'course_id' => $faker->numberBetween(1, 10),
+            ]);
+        }
+
+        // Seed the posts table
+        for ($i = 1; $i <= 20; $i++) {
+            Post::create([
+                'title' =>  'Test post title ' . $i,
+                'status' =>  rand(0, 1),
+                'position' =>  $i,
+                'description' =>  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ratione eius qui',
             ]);
         }
     }
