@@ -34,3 +34,7 @@ Route::get('/sms2', [HomeController::class, "sms2"]);
 Route::get('/post/order', [PostController::class, 'post_order'])->name('post.post_order');
 Route::post('/post/post_order_change', [PostController::class, 'post_order_change'])->name('post.order_change');
 //Drag and Drop Data Order End
+
+
+Route::get('posts/{status?}/{show_result?}/{s_query?}', [PostController::class, 'index'])->name('items.filter');
+Route::delete('/delete_multipost', [PostController::class, 'delete_multipost'])->name('post.delete_multipost');
